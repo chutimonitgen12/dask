@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เมนูระบบจัดการ ME Property</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #ea580c; /* สีส้มหลัก */
+            --primary-light: #ffedd5; /* สีส้มอ่อน (พื้นหลังไอคอน) */
+            --primary-dark: #c2410c; /* สีส้มเข้ม */
+            --bg-color: #fafaf9; /* สีพื้นหลังหน้าเว็บ (ขาวอมเทานิดๆ ให้การ์ดดูโดดเด่น) */
+            --text-main: #1c1917; /* สีตัวหนังสือหลัก (ดำอมเทา) */
+            --text-muted: #57534e; /* สีตัวหนังสือรอง */
+            --card-bg: #ffffff; /* สีพื้นหลังกล่องเมนู (ขาวสนิท) */
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-container h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .header-container p {
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* จัดเรียงกล่องให้อยู่ในรูปแบบ Grid รองรับมือถือ */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ดีไซน์กล่องการ์ด */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #f5f5f4;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .card-header i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* ดีไซน์ปุ่มลิงก์ */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #fafaf9;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .icon-box {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        /* เอฟเฟกต์เวลาชี้เมาส์ (Hover) */
+        .menu-item:hover {
+            background-color: #ffffff;
+            border-color: #fdba74; /* กรอบสีส้มอ่อนตอนชี้เมาส์ */
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.08), 0 4px 6px -4px rgba(234, 88, 12, 0.05);
+            color: var(--text-main);
+        }
+
+        .menu-item:hover .icon-box {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .menu-item .arrow-icon {
+            margin-left: auto;
+            color: #d6d3d1;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .arrow-icon {
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>ME PROPERTY AGENT</h1>
+        <p>เลือกระบบที่คุณต้องการใช้งาน</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-folder-open"></i>
+                <h2>งาน Project</h2>
+            </div>
+            <div class="menu-list">
+                <a href="https://renovate-billing-app-rme5.vercel.app/" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                    บัญชี 
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+                <a href="https://my-equipment-check.tiiny.site/?mode=suggestions" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-clipboard-list"></i></div>
+                    เช็คอุปกรณ์-สั่งของ
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+		<a href="#" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-border-all"></i></div>
+                    คำนวนกระเบื้อง
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+                <a href="https://floor-material-database.vercel.app/" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
+                    คำนวนงานปู SPC 
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-file-signature"></i>
+                <h2>แบบฟอร์มต่างๆ</h2>
+            </div>
+            <div class="menu-list">
+                <a href="https://inspection-system-three.vercel.app/" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-couch"></i></div>
+                    แบบฟอร์ม เช็คลิสเฟอร์นิเจอร์
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-thumbtack"></i>
+                <h2>อื่นๆ</h2>
+            </div>
+            <div class="menu-list">
+                <a href="https://termite-system-opal.vercel.app/" class="menu-item">
+                    <div class="icon-box"><i class="fa-solid fa-bug"></i></div>
+                    ตารางนัดปลวก
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
